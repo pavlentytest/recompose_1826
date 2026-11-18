@@ -1,6 +1,8 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +16,12 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,17 +42,21 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnrememberedMutableState")
 @Composable
 fun MyUI() {
+    Log.d("RRR","Recompose!")
+    var counter by remember {  mutableStateOf(0) }
     Box(modifier = Modifier
         .fillMaxSize()
-        .border(0.dp, Color.Red)
-        .background(Color.Red),
+        .border(0.dp, Color.Red),
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            var counter = 0
-            Button(onClick = { counter++ }) {
+
+            Button(onClick = {
+                counter++
+            }) {
                 Text(text = stringResource(R.string.click),
                     fontSize = dimensionResource(R.dimen.size1).value.sp
                 )

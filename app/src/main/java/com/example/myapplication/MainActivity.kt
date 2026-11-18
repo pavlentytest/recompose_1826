@@ -39,7 +39,7 @@ fun MyUI() {
     Box(modifier = Modifier
         .fillMaxSize()
         .border(0.dp, Color.Red)
-        .background(Color.Green),
+        .background(Color.Red),
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
